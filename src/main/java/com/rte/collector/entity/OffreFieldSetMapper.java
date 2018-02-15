@@ -1,7 +1,7 @@
 /*
  * Copyright 2015 the original author or authors.
  */
-package com.rte.collector.batch.domain;
+package com.rte.collector.entity;
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;

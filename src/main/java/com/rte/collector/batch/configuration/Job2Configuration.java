@@ -15,9 +15,6 @@
  */
 package com.rte.collector.batch.configuration;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
@@ -25,12 +22,9 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.xml.StaxEventItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.oxm.xstream.XStreamMarshaller;
 
 import com.rte.collector.batch.processor.OffreItemProcessor;
 import com.rte.collector.batch.reader.CsvReader;
@@ -41,19 +35,18 @@ import com.rte.collector.entity.OffreSpeciale;
 import com.rte.collector.repository.OffreSpecialRepository;
 
 
-
 /**
  * @author zoheir Boutaleb 
  */
 @Configuration
 
-public class JobConfiguration {
+public class Job2Configuration {
 	
 	@Autowired
-	public JobBuilderFactory jobBuilderFactory;
+	public JobBuilderFactory jobBuilderFactory2;
 
 	@Autowired
-	public StepBuilderFactory stepBuilderFactory;
+	public StepBuilderFactory stepBuilderFactory2;
 
 	@Autowired
 	public DataSource dataSource;
@@ -96,23 +89,23 @@ public class JobConfiguration {
 		
 		return new OffreItemProcessor();
 	}
-
+	
 	@Bean
-	public Step step1() {
-		System.out.println("Execution Job1");
-		XmlReader xmlReder= new XmlReader();
-		return stepBuilderFactory.get("step1")
-				.<Offre, Offre>chunk(100)
-				.reader(xmlReder.offreItemReader())
+	public Step step2() {
+		System.out.println("Execution Job2");
+		CsvReader csvReder= new CsvReader();
+		return stepBuilderFactory2.get("step2")
+				.<Offre, Offre>chunk(10)
+				.reader(csvReder.offreItemReader())
 				.processor(processor())
 				.writer(offreItemWriter())
 				.build();
 	}
 
 	@Bean
-	public Job job() {
-		return jobBuilderFactory.get("job")
-				.start(step1())
+	public Job job2() {
+		return jobBuilderFactory2.get("job")
+				.start(step2())
 				.build();
 	}
 }

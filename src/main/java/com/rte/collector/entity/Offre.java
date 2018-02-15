@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.rte.collector.batch.domain;
+package com.rte.collector.entity;
 
 import java.util.Date;
 
@@ -30,11 +30,11 @@ public class Offre {
 
 	private final Date heure_debut;
 
-	public Offre(long id, String reference_offre, String eda, Date heureDebut) {
+	public Offre(long id, String reference_offre, String eda, Date heure_debut) {
 		this.id = id;
 		this.reference_offre = reference_offre;
 		this.eda = eda;
-		this.heure_debut = heureDebut;
+		this.heure_debut = heure_debut;
 	}
 
 	public long getId() {
