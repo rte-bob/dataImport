@@ -24,17 +24,17 @@ public class Offre {
 
 	private final long id;
 
-	private final String reference_offre;
+	private final String referenceOffre;
 
 	private final String eda;
 
-	private final Date heure_debut;
+	private final Date heureDebut;
 
-	public Offre(long id, String reference_offre, String eda, Date heure_debut) {
+	public Offre(long id, String referenceOffre, String eda, Date heureDebut) {
 		this.id = id;
-		this.reference_offre = reference_offre;
+		this.referenceOffre = referenceOffre;
 		this.eda = eda;
-		this.heure_debut = heure_debut;
+		this.heureDebut = heureDebut;
 	}
 
 	public long getId() {
@@ -43,25 +43,25 @@ public class Offre {
 
 	
 
-	public String getReference_offre() {
-		return reference_offre;
+	public String getReferenceOffre() {
+		return referenceOffre;
 	}
 
 	public String getEda() {
 		return eda;
 	}
 
-	public Date getHeure_debut() {
-		return heure_debut;
+	public Date getHeureDebut() {
+		return heureDebut;
 	}
 
 	@Override
 	public String toString() {
 		return "Offre{" +
 				"id=" + id +
-				", reference_offre='" + reference_offre + '\'' +
+				", referenceOffre='" + referenceOffre + '\'' +
 				", eda='" + eda + '\'' +
-				", heure_debut=" + heure_debut +
+				", heureDebut=" + heureDebut +
 				'}';
 	}
 }

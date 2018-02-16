@@ -15,8 +15,6 @@
  */
 package com.rte.collector.batch.configuration;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -25,20 +23,24 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.xml.StaxEventItemReader;
+import org.springframework.batch.item.validator.ValidatingItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.oxm.xstream.XStreamMarshaller;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import com.rte.collector.batch.processor.OffreItemProcessor;
-import com.rte.collector.batch.reader.CsvReader;
+import com.rte.collector.batch.processor.validator.OffreValidator;
 import com.rte.collector.batch.reader.XmlReader;
 import com.rte.collector.entity.Offre;
 import com.rte.collector.entity.OffreSpeciale;
 
 import com.rte.collector.repository.OffreSpecialRepository;
+
+import com.rte.collector.listener.JobListener;
+
+import com.rte.collector.listener.ChunkListener;
+
 
 
 
@@ -75,7 +77,7 @@ public class JobConfiguration {
 				OffreSpeciale xmlOffre = new OffreSpeciale();
 				
 				xmlOffre.setEda(item.getEda());
-				xmlOffre.setActeur(item.getReference_offre());
+				xmlOffre.setActeur(item.getReferenceOffre());
 				
 				
 				try {
@@ -96,6 +98,16 @@ public class JobConfiguration {
 		
 		return new OffreItemProcessor();
 	}
+	
+	@Bean
+	public ValidatingItemProcessor<Offre> itemProcessor() {
+		ValidatingItemProcessor<Offre> customerValidatingItemProcessor =
+				new ValidatingItemProcessor<>(new OffreValidator());
+
+		customerValidatingItemProcessor.setFilter(true);
+
+		return customerValidatingItemProcessor;
+	}
 
 	@Bean
 	public Step step1() {
@@ -103,16 +115,18 @@ public class JobConfiguration {
 		XmlReader xmlReder= new XmlReader();
 		return stepBuilderFactory.get("step1")
 				.<Offre, Offre>chunk(100)
+				.listener(new ChunkListener())
 				.reader(xmlReder.offreItemReader())
-				.processor(processor())
+				.processor(itemProcessor())
 				.writer(offreItemWriter())
 				.build();
 	}
 
-	@Bean
-	public Job job() {
-		return jobBuilderFactory.get("job")
+	@Bean (name= "Job XML")
+	public Job job(JavaMailSender javaMailSender) {
+		return jobBuilderFactory.get("Job XML")
 				.start(step1())
+				.listener(new JobListener(javaMailSender))
 				.build();
 	}
 }

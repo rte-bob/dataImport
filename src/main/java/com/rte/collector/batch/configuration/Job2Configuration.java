@@ -25,13 +25,13 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import com.rte.collector.batch.processor.OffreItemProcessor;
 import com.rte.collector.batch.reader.CsvReader;
-import com.rte.collector.batch.reader.XmlReader;
 import com.rte.collector.entity.Offre;
 import com.rte.collector.entity.OffreSpeciale;
-
+import com.rte.collector.listener.JobListener;
 import com.rte.collector.repository.OffreSpecialRepository;
 
 
@@ -68,7 +68,7 @@ public class Job2Configuration {
 				OffreSpeciale xmlOffre = new OffreSpeciale();
 				
 				xmlOffre.setEda(item.getEda());
-				xmlOffre.setActeur(item.getReference_offre());
+				xmlOffre.setActeur(item.getReferenceOffre());
 				
 				
 				try {
@@ -78,7 +78,6 @@ public class Job2Configuration {
 					System.out.println("Exception occur");
 				}
 				
-				//System.out.println(item.toString());
 
 			}
 		};
@@ -102,10 +101,11 @@ public class Job2Configuration {
 				.build();
 	}
 
-	@Bean
-	public Job job2() {
-		return jobBuilderFactory2.get("job")
+	@Bean (name= "Job CSV")
+	public Job job2(JavaMailSender javaMailSender) {
+		return jobBuilderFactory2.get("Job CSV")
 				.start(step2())
+				.listener(new JobListener(javaMailSender))
 				.build();
 	}
 }

@@ -12,7 +12,7 @@ import javax.persistence.Id;
  * @author wbenmbarek
  * 
  */
-@Entity(name= "offre_speciale")
+@Entity(name= "offreSpeciale")
 public class OffreSpeciale {
 	
 	private static final long serialVersionUID = 1L;
@@ -21,11 +21,11 @@ public class OffreSpeciale {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
 	
-	@Column( length=100)
+	@Column( length=100, name="idOffre")
 	private String idOffre;
 	
-	@Column(length=100 ,name="reference_offre")
-	private String reference_offre;
+	@Column(length=100 ,name="referenceOffre")
+	private String referenceOffre;
 	
 	
 	@Column(length = 100)
@@ -40,7 +40,7 @@ public class OffreSpeciale {
 	private String sens;
 
 
-	@Column(length = 100)
+	@Column(length = 100, name="indiceDemarrage")
 	
 	private String indiceDemarrage;
 	
@@ -49,16 +49,16 @@ public class OffreSpeciale {
 	private String prix;
 	
 
-	@Column(length = 100)
+	@Column(length = 100, name="heureDebut")
 	private Date heureDebut;
 	
 	
 
-	@Column(length = 100)
+	@Column(length = 100, name="heureFin")
 	private Date heureFin;
 	
 
-	@Column(length = 100)
+	@Column(length = 100, name="idOffrePrecident")
 	private String idOffrePrecident;
 	
 /*
@@ -88,12 +88,12 @@ public class OffreSpeciale {
 
 	
 
-	public String getReference_offre() {
-		return reference_offre;
+	public String getReferenceOffre() {
+		return referenceOffre;
 	}
 
-	public void setReference_offre(String reference_offre) {
-		this.reference_offre = reference_offre;
+	public void setReferenceOffre(String referenceOffre) {
+		this.referenceOffre = referenceOffre;
 	}
 
 	public String getEda() {

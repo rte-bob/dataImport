@@ -15,8 +15,8 @@ public class OffreFieldSetMapper implements FieldSetMapper<Offre> {
 	@Override
 	public Offre mapFieldSet(FieldSet fieldSet) throws BindException {
 		return new Offre(fieldSet.readLong("id"),
-				fieldSet.readString("reference_offre"),
+				fieldSet.readString("referenceOffre"),
 				fieldSet.readString("eda"),
-				fieldSet.readDate("heure_debut", "yyyy-MM-dd HH:mm:ss"));
+				fieldSet.readDate("heureDebut", "yyyy-MM-dd HH:mm:ss"));
 	}
 }

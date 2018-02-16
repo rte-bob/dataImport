@@ -6,12 +6,12 @@ import com.rte.collector.entity.Offre;
 
 
 public class OffreItemProcessor implements ItemProcessor <Offre,Offre>{
-public static int processed;
+private static int processed;
 	@Override
 	public Offre process(Offre item) throws Exception {
 		
 		OffreItemProcessor.incProcessed();
-		System.out.println("Offre Processing n° "+processed+" : nom : "+item.getEda()+" "+item.getReference_offre());
+		System.out.println("Offre Processing n° "+processed+" : nom : "+item.getEda()+" "+item.getReferenceOffre());
 		
 		return item;
 	}

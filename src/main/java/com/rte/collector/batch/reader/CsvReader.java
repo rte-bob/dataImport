@@ -45,7 +45,7 @@ public class CsvReader {
 		DefaultLineMapper<Offre> customerLineMapper = new DefaultLineMapper<>();
 
 		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
-		tokenizer.setNames(new String[] {"id", "reference_offre", "eda", "heure_debut"});
+		tokenizer.setNames(new String[] {"id", "referenceOffre", "eda", "heureDebut"});
 
 		customerLineMapper.setLineTokenizer(tokenizer);
 		customerLineMapper.setFieldSetMapper(new OffreFieldSetMapper());

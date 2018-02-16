@@ -2,63 +2,63 @@
 <offres>
 	<offre>
 		<id>1</id>
-		<reference_offre>Mufutau</reference_offre>
-		<eda>Maddox</eda>
-		<heure_debut>2016-06-05 19:43:51PM</heure_debut>
+		<referenceOffre></referenceOffre>
+		<eda></eda>
+		<heureDebut>2016-06-05 19:43:51PM</heureDebut>
 	</offre>
 	<offre>
 		<id>2</id>
-		<reference_offre>Brenden</reference_offre>
+		<referenceOffre>Brenden</referenceOffre>
 		<eda>Cobb</eda>
-		<heure_debut>2016-01-06 13:18:17PM</heure_debut>
+		<heureDebut>2016-01-06 13:18:17PM</heureDebut>
 	</offre>
 	<offre>
 		<id>3</id>
-		<reference_offre>Kerry</reference_offre>
+		<referenceOffre>Kerry</referenceOffre>
 		<eda>Joseph</eda>
-		<heure_debut>2015-09-15 18:32:33PM</heure_debut>
+		<heureDebut>2015-09-15 18:32:33PM</heureDebut>
 	</offre>
 	<offre>
 		<id>4</id>
-		<reference_offre>Sierra</reference_offre>
+		<referenceOffre>Sierra</referenceOffre>
 		<eda>Daniels</eda>
-		<heure_debut>2016-10-08 09:41:05AM</heure_debut>
+		<heureDebut>2016-10-08 09:41:05AM</heureDebut>
 	</offre>
 	<offre>
 		<id>5</id>
-		<reference_offre>Gray</reference_offre>
+		<referenceOffre>Gray</referenceOffre>
 		<eda>Mann</eda>
-		<heure_debut>2016-06-26 23:32:12PM</heure_debut>
+		<heureDebut>2016-06-26 23:32:12PM</heureDebut>
 	</offre>
 	<offre>
 		<id>6</id>
-		<reference_offre>Alexandra</reference_offre>
+		<referenceOffre>Alexandra</referenceOffre>
 		<eda>Copeland</eda>
-		<heure_debut>2015-08-15 08:56:23AM</heure_debut>
+		<heureDebut>2015-08-15 08:56:23AM</heureDebut>
 	</offre>
 	<offre>
 		<id>7</id>
-		<reference_offre>Tanner</reference_offre>
+		<referenceOffre>Tanner</referenceOffre>
 		<eda>Ashley</eda>
-		<heure_debut>2016-11-11 07:32:15AM</heure_debut>
+		<heureDebut>2016-11-11 07:32:15AM</heureDebut>
 	</offre>
 	<offre>
 		<id>8</id>
-		<reference_offre>Fletcher</reference_offre>
+		<referenceOffre>Fletcher</referenceOffre>
 		<eda>Roberts</eda>
-		<heure_debut>2016-06-16 18:10:43PM</heure_debut>
+		<heureDebut>2016-06-16 18:10:43PM</heureDebut>
 	</offre>
 	<offre>
 		<id>9</id>
-		<reference_offre>Kyla</reference_offre>
+		<referenceOffre>Kyla</referenceOffre>
 		<eda>Michael</eda>
-		<heure_debut>2016-12-09 11:42:05AM</heure_debut>
+		<heureDebut>2016-12-09 11:42:05AM</heureDebut>
 	</offre>
 	<offre>
 		<id>10</id>
-		<reference_offre>Lani</reference_offre>
+		<referenceOffre>Lani</referenceOffre>
 		<eda>Burt</eda>
-		<heure_debut>2015-10-25 09:33:02AM</heure_debut>
+		<heureDebut>2015-10-25 09:33:02AM</heureDebut>
 	</offre>
 	
 </offres>
