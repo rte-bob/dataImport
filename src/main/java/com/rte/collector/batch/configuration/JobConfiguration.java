@@ -22,12 +22,23 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.validator.ValidatingItemProcessor;
+import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
+
+import org.springframework.batch.repeat.RepeatStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 
 import com.rte.collector.batch.processor.OffreItemProcessor;
 import com.rte.collector.batch.processor.validator.OffreValidator;
@@ -108,6 +119,15 @@ public class JobConfiguration {
 
 		return customerValidatingItemProcessor;
 	}
+	
+	@Bean
+	@StepScope
+	public Tasklet helloWorldTasklet(@Value("#{jobParameters['message']}") String message) {
+		return (stepContribution, chunkContext) -> {
+			System.out.println(message);
+			return RepeatStatus.FINISHED;
+		};
+	}
 
 	@Bean
 	public Step step1() {
@@ -115,7 +135,7 @@ public class JobConfiguration {
 		XmlReader xmlReder= new XmlReader();
 		return stepBuilderFactory.get("step1")
 				.<Offre, Offre>chunk(100)
-				.listener(new ChunkListener())
+//				.listener(new ChunkListener())
 				.reader(xmlReder.offreItemReader())
 				.processor(itemProcessor())
 				.writer(offreItemWriter())
